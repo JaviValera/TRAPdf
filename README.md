@@ -1,5 +1,5 @@
 # TRAPdf
 Open Source Web Aplication to Translate PDF documents.
 Webs of interest for our School Project:  
-[pdf-to-html](https://github.com/mgufrone/pdf-to-html/blob/master/README.md)  
+[pdfparser](https://github.com/smalot/pdfparser)  
 [Translator-Api-Integration](https://cloud.google.com/translate/docs/getting-started)  
