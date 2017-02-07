@@ -50,15 +50,18 @@
                 <div class="inner cover">
                     <h1 class="cover-heading">UPLOAD YOUR PDF FILE.</h1>
                     <p class="lead">Select the language to which you want to translate the document.</p>
-                    <form action="engine.php">
+                    <form enctype="multipart/form-data" action="engine.php" method="post">
                         <div class="input-group">
                             <label class="input-group-btn">
-                                <span class="btn btn-default"> Browse&hellip; <input type="file" style="display: none;" name="src-pdf" accept="application/pdf" multiple></span>
+
+                                <span class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Browse&hellip;<input type="file" style="display: none;" name="src-pdf" accept="application/pdf" multiple></span>
                             </label>
                             <input type="text" class="form-control" readonly>
                         </div>
                         <br/>
-                        <input type="submit" name="buscar" class="btn btn-lg btn-default" value="Upload" />
+                        
+
+                        <button type="submit" name="buscar" class="btn btn-lg btn-default"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
                     </form>
                 </div>
 
