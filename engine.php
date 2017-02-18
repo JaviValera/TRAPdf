@@ -1,38 +1,58 @@
 <?php
- 
-// Include Composer autoloader if not already done.
+// if you are using composer, just use this
 include 'vendor/autoload.php';
-require ('FPDF/fpdf.php');
-
-// Parse pdf file and build necessary objects.
-$parser = new \Smalot\PdfParser\Parser();
-$pdf    = $parser->parseFile($_FILES["src-pdf"]["tmp_name"]);
- 
-$text = $pdf->getText();
-
-//$text = mb_convert_encoding($text, "auto");
-//$text = utf8_decode($text);
-
-
-
-//$text = iconv('UTF-8', 'ISO-8859-1', $text);
-
-
- //echo $text ;
-
+// CONFIGURACION DEL CONVERTIDOR A HTML
+use Gufy\PdfToHtml\Config;
+Config::set('pdftohtml.bin', 'C:/poppler-0.51/bin/pdftohtml.exe');
+Config::set('pdfinfo.bin', 'C:/poppler-0.51/bin/pdfinfo.exe');
+move_uploaded_file($_FILES["src-pdf"]["tmp_name"], "document.pdf");
+$pdf = new Gufy\PdfToHtml\Pdf('document.pdf');
+$total_pages = $pdf->getPages();
+// HASTA AQUÍ
+// CONFIGURACION CONVERTIDOR A PDF
+use mikehaertl\wkhtmlto\Pdf;
+$pdf2 = new Pdf(array(
+    'binary' => 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
+    'ignoreWarnings' => true,
+    'commandOptions' => array(
+        'useExec' => true,      // Can help if generation fails without a useful error message
+        'procEnv' => array(
+            // Check the output of 'locale' on your system to find supported languages
+            'LANG' => 'en_US.utf-8',
+        ),
+    ),
+));
+// HASTA AQUÍ
 use Stichoza\GoogleTranslate\TranslateClient;
-
-$tr = new TranslateClient(null, 'es'); // Detect language and translate to Spanish
-$text = $tr->translate($text); // Returns raw array of translated data
-
-$text = utf8_decode($text);
-
-//echo $text;
-
-$pdf = new FPDF();
-$pdf->AddPage();
-$pdf->SetFont('Arial','',12);
-$pdf->Write(5,$text);
-//$pdf->Cell(40,10,$text);
-$pdf->Output(); 
+$page="1";
+while ($page <= $total_pages)
+{
+$html = $pdf->html($page);
+$html = str_replace("<br>", " AAAA ", $html);
+$dom = new DOMDocument;
+$dom->loadHTML('<?xml version="1.0" encoding="UTF-8"?>' . $html);
+$b = $dom->getElementsByTagName('p');
+foreach ($b as $p)
+{
+    $tr = new TranslateClient(null, 'es'); 
+    $p->nodeValue = $tr->translate($p->nodeValue);
+}
+$html2 = $dom->saveHTML();
+$html2 = str_replace("AAAA", " <br> ", $html2);
+file_put_contents('translated' . $page . '.html', $html2);
+$pdf2->addPage('localhost/TRAPdf-master/translated' . $page . '.html');
+$page++;
+}
+if (!$pdf2->send()) {
+    echo $pdf2->getError();
+}
+$clean="1";
+while ($clean <= $total_pages)
+{
+unlink('translated' . $clean . '.html');
+$clean++;
+}
+unlink('document.pdf');
+exec('rd C:\xampp\htdocs\TRAPdf-master\output\ /S /Q');
+exec('md C:\xampp\htdocs\TRAPdf-master\output\ ');
 ?>
