@@ -8,14 +8,14 @@ Open Source Web Aplication for Translate PDF documents.
 
 - Requirements
 
-> Windows 7, 8.1 or 10
-poppler-utils installed in C:\poppler-0.51
-wkhtmltopdf installed in windows
+> Windows 7, 8.1 or 10 <br/>
+poppler-utils installed in C:\poppler-0.51 <br/>
+wkhtmltopdf installed in windows <br/>
 
 - Installation
 
-> Install in xampp or apache with php 7.0
-> not working in IIS Server or in php 7.1
+> Install in xampp or apache with php 7.0 <br/>
+> not working in IIS Server or in php 7.1 <br/>
 
  - Usage
 
@@ -23,6 +23,6 @@ wkhtmltopdf installed in windows
  
  
  - Class used
-> mgufrone/pdf-to-html
-Stichoza/google-translate-php
-mikehaertl/phpwkhtmltopdf
+> mgufrone/pdf-to-html <br/>
+Stichoza/google-translate-php <br/>
+mikehaertl/phpwkhtmltopdf <br/>
