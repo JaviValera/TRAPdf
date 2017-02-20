@@ -34,13 +34,13 @@ $dom->loadHTML('<?xml version="1.0" encoding="UTF-8"?>' . $html);
 $b = $dom->getElementsByTagName('p');
 foreach ($b as $p)
 {
-    $tr = new TranslateClient(null, 'es'); 
+    $tr = new TranslateClient(null, 'es');
     $p->nodeValue = $tr->translate($p->nodeValue);
 }
 $html2 = $dom->saveHTML();
 $html2 = str_replace("AAAA", " <br> ", $html2);
 file_put_contents('translated' . $page . '.html', $html2);
-$pdf2->addPage('localhost/TRAPdf-master/translated' . $page . '.html');
+$pdf2->addPage('localhost/TRAPdf/translated' . $page . '.html');
 $page++;
 }
 if (!$pdf2->send()) {
@@ -53,6 +53,6 @@ unlink('translated' . $clean . '.html');
 $clean++;
 }
 unlink('document.pdf');
-exec('rd C:\xampp\htdocs\TRAPdf-master\output\ /S /Q');
-exec('md C:\xampp\htdocs\TRAPdf-master\output\ ');
+exec('rd C:\xampp\htdocs\TRAPdf\output\ /S /Q');
+exec('md C:\xampp\htdocs\TRAPdf\output\ ');
 ?>
