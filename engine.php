@@ -28,7 +28,6 @@ $page='1';
 do
 {
 $html = $pdf->html($page);
-unset($pdf);
 $html = str_replace('<br>', ' AAAA ', $html);
 $dom = new DOMDocument;
 $dom->loadHTML('<?xml version="1.0" encoding="UTF-8"?>' . $html);
@@ -44,7 +43,9 @@ $html2 = str_replace('AAAA', ' <br> ', $html2);
 file_put_contents('translated' . $page . '.html', $html2);
 $pdf2->addPage('localhost/TRAPdf/translated' . $page . '.html');
 $page++;
-} while ($page <= $total_pages);
+}
+while ($page <= $total_pages);
+unset($pdf);
 if (!$pdf2->send('translated-' . $_FILES['src-pdf']['name'])) {
     echo $pdf2->getError();
 }
