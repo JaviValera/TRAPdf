@@ -5,7 +5,7 @@ include 'vendor/autoload.php';
 use Gufy\PdfToHtml\Config;
 Config::set('pdftohtml.bin', 'C:/poppler-0.51/bin/pdftohtml.exe');
 Config::set('pdfinfo.bin', 'C:/poppler-0.51/bin/pdfinfo.exe');
-move_uploaded_file($_FILES["src-pdf"]["tmp_name"], "document.pdf");
+move_uploaded_file($_FILES['src-pdf']['tmp_name'], 'document.pdf');
 $pdf = new Gufy\PdfToHtml\Pdf('document.pdf');
 $total_pages = $pdf->getPages();
 // HASTA AQUÍ
@@ -24,29 +24,31 @@ $pdf2 = new Pdf(array(
 ));
 // HASTA AQUÍ
 use Stichoza\GoogleTranslate\TranslateClient;
-$page="1";
-while ($page <= $total_pages)
+$page='1';
+do
 {
 $html = $pdf->html($page);
-$html = str_replace("<br>", " AAAA ", $html);
+unset($pdf);
+$html = str_replace('<br>', ' AAAA ', $html);
 $dom = new DOMDocument;
 $dom->loadHTML('<?xml version="1.0" encoding="UTF-8"?>' . $html);
+unset($html);
 $b = $dom->getElementsByTagName('p');
 foreach ($b as $p)
 {
-    $tr = new TranslateClient(null, 'es');
+    $tr = new TranslateClient(null, $_POST["lang"]);
     $p->nodeValue = $tr->translate($p->nodeValue);
 }
 $html2 = $dom->saveHTML();
-$html2 = str_replace("AAAA", " <br> ", $html2);
+$html2 = str_replace('AAAA', ' <br> ', $html2);
 file_put_contents('translated' . $page . '.html', $html2);
 $pdf2->addPage('localhost/TRAPdf/translated' . $page . '.html');
 $page++;
-}
-if (!$pdf2->send()) {
+} while ($page <= $total_pages);
+if (!$pdf2->send('translated-' . $_FILES['src-pdf']['name'])) {
     echo $pdf2->getError();
 }
-$clean="1";
+$clean='1';
 while ($clean <= $total_pages)
 {
 unlink('translated' . $clean . '.html');
