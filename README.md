@@ -21,8 +21,8 @@ wkhtmltopdf installed in windows <br/>
 
 > Join in the web, upload a pdf, select the output lenguage, click UPLOAD and wait for the translated pdf file.
  
- 
  - Class used
+ 
 > mgufrone/pdf-to-html <br/>
 Stichoza/google-translate-php <br/>
 mikehaertl/phpwkhtmltopdf <br/>
