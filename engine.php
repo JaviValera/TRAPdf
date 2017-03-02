@@ -46,9 +46,7 @@ $page++;
 }
 while ($page <= $total_pages);
 unset($pdf);
-if (!$pdf2->send('translated-' . $_FILES['src-pdf']['name'])) {
-    echo $pdf2->getError();
-}
+$pdf2->saveAs('TRAPdf-translated.pdf');
 $clean='1';
 while ($clean <= $total_pages)
 {
@@ -58,4 +56,5 @@ $clean++;
 unlink('document.pdf');
 exec('rd C:\xampp\htdocs\TRAPdf\output\ /S /Q');
 exec('md C:\xampp\htdocs\TRAPdf\output\ ');
+header("Location: descargado.html");
 ?>
