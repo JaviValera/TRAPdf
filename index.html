@@ -19,16 +19,21 @@
     <title>TRAPdf</title>
 
     <!--css de bootstrap -->
+
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 
     <!--css de FontAwesome -->
+
     <link rel="stylesheet" href="css/font-awesome.min.css" />
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- CSS Personalizado-->
+
     <link href="css/cover.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -40,45 +45,53 @@
             <div class="cover-container">
 
                 <div class="masthead clearfix">
+
                     <div class="inner">
-                        <h3 class="masthead-brand">TRAPdf</h3>
+
+                        <img src="img/Logo.png" class="masthead-brand" alt="logo" />
+
                         <nav>
                             <ul class="nav masthead-nav">
                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="features.html">Features</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="about.html">About</a></li>
                             </ul>
                         </nav>
+
                     </div>
+
                 </div>
 
                 <div class="inner cover">
-                    <form enctype="multipart/form-data" action="engine.php" method="post">
-                        <!-- INICIO EDICION -->
 
-                        <!-- Titulo -->
-                        <h1 class="cover-heading">UPLOAD YOUR PDF FILE.</h1>
-                        <!-- Alerta de no seleccion de pdf -->
-                        <div class="alert alert-danger fade in alert-danger-input" style="display:none">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <p><strong>ERROR! You didn't select any pdf file.</strong></p>
-                        </div>
-                        <!-- Boton + input readonly -->
-                        <div class="input-group">
-                            <label class="input-group-btn">
-                                <span class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; Browse&hellip;<input type="file" style="display: none;" name="src-pdf" accept="application/pdf"></span>
-                            </label>
-                            <input type="text" class="form-control input-ok" style="text-align:center" value="Seleccione un pdf" readonly>
-                        </div>
-                        <!-- Descripción de añadir pdf -->
-                        <span class="help-block"> Select only one .pdf file</span>
-                        <!-- Titulo seleccionar lengua -->
-                        <p class="lead">Select the language to which you want to translate the document.</p>
-                        <!-- Alerta de no seleccion de pdf -->
-                        <div class="alert alert-danger fade in alert-danger-select" style="display:none">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <p><strong>ERROR! You didn't select language.</strong></p>
-                        </div>
+                    <div class="formulario" style="display:block">
+
+                        <form enctype="multipart/form-data" action="engine.php" method="post">
+                            <!-- INICIO EDICION -->
+
+                            <!-- Titulo -->
+                            <h1 class="cover-heading">UPLOAD YOUR PDF FILE.</h1>
+                            <!-- Alerta de no seleccion de pdf -->
+                            <div class="alert alert-danger fade in alert-danger-input" style="display:none">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <p><strong>ERROR! You didn't select any pdf file.</strong></p>
+                            </div>
+                            <!-- Boton + input readonly -->
+                            <div class="input-group">
+                                <label class="input-group-btn">
+                                    <span class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; Browse&hellip;<input type="file" style="display: none;" name="src-pdf" accept="application/pdf"></span>
+                                </label>
+                                <input type="text" class="form-control input-ok" style="text-align:center" value="Seleccione un pdf" readonly>
+                            </div>
+                            <!-- Descripción de añadir pdf -->
+                            <span class="help-block"> Select only one .pdf file</span>
+                            <!-- Titulo seleccionar lengua -->
+                            <p class="lead">Select the language to which you want to translate the document.</p>
+                            <!-- Alerta de no seleccion de pdf -->
+                            <div class="alert alert-danger fade in alert-danger-select" style="display:none">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <p><strong>ERROR! You didn't select language.</strong></p>
+                            </div>
                             <select class="form-control select-ok" name="lang">
                                 <option value="none" selected>-- Select language --</option>
                                 <option value="af">Afrikaans</option>
@@ -191,11 +204,19 @@
                             <button type="submit" name="buscar" class="btn btn-lg btn-dark submit-form">
                                 <i class="fa fa-upload" aria-hidden="true"></i> &nbsp;Upload
                             </button>
+                            <br/>
+                        </form>
+                    </div>
 
-                        <br/>
+                    <div class="progreso" style="display:none">
+                        <h1 class="cover-heading">YOUR FILE IS TRANSLATING.</h1>
+                        <p class="lead">If you close that window the translate will be cancelled.</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span>It could be take a few minutes.</span> </div>
+                        </div>
+                        <a class="btn btn-lg btn-dark" href="index.html"> <i class="fa fa-upload" aria-hidden="true"></i> &nbsp;Cancel </a>
+                    </div>
 
-                        <!-- FIN EDICION -->
-                    </form>
                 </div>
 
                 <div class="mastfoot">
@@ -207,7 +228,6 @@
             </div>
 
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -215,15 +235,15 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="js/input.js"></script>
-    
+
     <!-- Bootstrap JavaScript -->
-    
+
     <script src="js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    
+
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    
+
     <!-- JavaScript para menu -->
 
     <script>
@@ -241,6 +261,9 @@
             } else if (select_lang == "none") {
                 a.preventDefault();
                 $(".alert-danger-select").css('display', '')
+            } else {
+                $(".formulario").css('display', 'none')
+                $(".progreso").css('display', '')
             }
         });
     </script>
