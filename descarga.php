@@ -9,18 +9,16 @@ if (!isset($_GET['pdf-file']) || empty($_GET['pdf-file'])) {
 //nombre del archivo eliminando cualquier ruta. 
 $archivo = basename($_GET['pdf-file']);
 
-if (is_file($archivo))
-{
+if (is_file($archivo)) {
    header('Content-Type: application/pdf');
    header('Content-Disposition: attachment; filename='.$archivo);
    header('Content-Transfer-Encoding: binary');
    header('Content-Length: '.filesize($archivo));
 
    readfile($archivo);
-}
-else
+} else {
    exit();
-
+}
 unlink( 'document.pdf');
 exec( 'del C:\xampp\htdocs\TRAPdf\TRAPdf-translated.pdf /Q');
 ?>
