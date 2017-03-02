@@ -22,5 +22,5 @@ else
    exit();
 
 unlink( 'document.pdf');
-exec( 'del C:\xampp\htdocs\TRAPdf-master\TRAPdf-translated.pdf /Q');
+exec( 'del C:\xampp\htdocs\TRAPdf\TRAPdf-translated.pdf /Q');
 ?>
