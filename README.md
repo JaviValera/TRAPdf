@@ -4,7 +4,7 @@
 ----------
 
 
-Open Source Web Aplication for Translate PDF documents.
+Open Source Web Aplication to Translate PDF documents.
 
 - Requirements
 
